@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Footer from "./footer";
 import Navbar from "./navbar";
 
 export default function Layout({ children }) {
@@ -7,6 +7,8 @@ export default function Layout({ children }) {
       <Navbar />
 
       {children}
+
+      <Footer />
     </div>
   );
 }

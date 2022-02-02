@@ -1,4 +1,6 @@
+import Link from "next/link";
 import React, { useState } from "react";
+import { categories } from "../utils/category";
 
 /**
  * @author
@@ -8,27 +10,6 @@ import React, { useState } from "react";
 const Navbar = (props) => {
   const [open, setOpen] = useState(false);
 
-  const categories = [
-    {
-      name: "Contact",
-    },
-    {
-      name: "All Products",
-    },
-    {
-      name: "Moters",
-    },
-    {
-      name: "Remotes",
-    },
-    {
-      name: "Sliders Gate",
-    },
-
-    {
-      name: "Barriers",
-    },
-  ];
   return (
     <>
       {/* <!-- navbar goes here --> */}
@@ -37,10 +18,7 @@ const Navbar = (props) => {
           <div className="flex justify-between">
             {/* <!-- logo --> */}
             <div>
-              <a
-                href="#"
-                className="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900"
-              >
+              <p className="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
                 <svg
                   className="h-6 w-6 mr-1 text-blue-400"
                   xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +33,12 @@ const Navbar = (props) => {
                     d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                   />
                 </svg>
-                <span className="text-2xl	font-bold">AutomateThis</span>
-              </a>
+                <Link href="/">
+                  <span className="text-2xl cursor-pointer	font-bold">
+                    AutomateThis
+                  </span>
+                </Link>
+              </p>
             </div>
 
             {/* search */}
@@ -91,7 +73,7 @@ const Navbar = (props) => {
               <a href="" className="py-5 px-3">
                 About
               </a>
-              <a href="" className="py-2 px-3">
+              <a href="/contact" className="py-2 px-3">
                 Contact
               </a>
             </div>
@@ -122,11 +104,14 @@ const Navbar = (props) => {
         </div>
 
         {/* <!-- mobile menu --> */}
+
         <div className={open ? "mobile-menu md:hidden" : "hidden"}>
           {categories.map((item) => (
-            <a href="#" className="block py-2 px-4 text-sm hover:bg-gray-200">
-              {item.name}
-            </a>
+            <p className="block py-2 px-4 text-sm hover:bg-gray-200">
+              <Link href={"/category/" + item.name.toLowerCase()}>
+                {item.name}
+              </Link>
+            </p>
           ))}
         </div>
       </nav>

@@ -6,7 +6,6 @@ import {
   ButtonBack,
   ButtonNext,
 } from "pure-react-carousel";
-import One from "../src/assets/one.jpg";
 import "pure-react-carousel/dist/react-carousel.es.css";
 
 /**
@@ -27,7 +26,7 @@ export const Hero = () => {
       <Slider className="h-full">
         <Slide index={0}>
           <img
-            className="h-2/4 rounded-lg md:h-[24rem] w-4/5 mx-auto pt-6 drop-shadow-lg contrast-[.8]"
+            className="h-2/4  rounded-lg  md:h-[24rem] w-4/5 mx-auto pt-6 drop-shadow-lg contrast-[.8]"
             src="https://media.istockphoto.com/photos/man-used-hand-remote-control-to-open-swing-gate-door-by-motor-is-picture-id1164249414?k=20&m=1164249414&s=612x612&w=0&h=xTaYCLbQqV4FvW2MJKyGU1R1vsI1rbfcmdXrsKdP6Kw="
           />
         </Slide>
