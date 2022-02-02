@@ -10,12 +10,17 @@ import Image from "next/image";
 const AllProducts = ({ products, name }) => {
   return (
     <div className="flex flex-col">
-      <div className="text-lg mx-auto mb-5 font-bold">{name.toUpperCase()}</div>
+      <div className="text-lg mx-auto mb-5 font-bold">
+        {name?.toUpperCase()}
+      </div>
 
       <div className="flex  justify-center content-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-12 justify-content-center">
-          {products.map((item) => (
-            <div className="max-w-card-lg h-min bg-white rounded-lg shadow-lg border-gray-800">
+          {products?.map((item, i) => (
+            <div
+              key={i}
+              className="max-w-card-lg h-min bg-white rounded-lg shadow-lg border-gray-800"
+            >
               <Image
                 className="rounded-t-lg object-cover"
                 src={"https:" + item.fields.image.fields.file.url}

@@ -27,9 +27,9 @@ const Navbar = (props) => {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                   />
                 </svg>
@@ -70,12 +70,12 @@ const Navbar = (props) => {
 
             {/* <!-- secondary nav --> */}
             <div className="hidden md:flex items-center space-x-1">
-              <a href="" className="py-5 px-3">
+              <Link href="" className="py-5 px-3">
                 About
-              </a>
-              <a href="/contact" className="py-2 px-3">
+              </Link>
+              <Link href="/contact" className="py-2 px-3">
                 Contact
-              </a>
+              </Link>
             </div>
 
             {/* <!-- mobile button goes here --> */}
@@ -92,9 +92,9 @@ const Navbar = (props) => {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
@@ -106,8 +106,8 @@ const Navbar = (props) => {
         {/* <!-- mobile menu --> */}
 
         <div className={open ? "mobile-menu md:hidden" : "hidden"}>
-          {categories.map((item) => (
-            <p className="block py-2 px-4 text-sm hover:bg-gray-200">
+          {categories.map((item, i) => (
+            <p key={i} className="block py-2 px-4 text-sm hover:bg-gray-200">
               <Link href={"/category/" + item.name.toLowerCase()}>
                 {item.name}
               </Link>
