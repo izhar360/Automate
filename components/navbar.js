@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createClient } from "contentful";
 import { categories } from "../utils/category";
 
 /**
@@ -7,8 +8,24 @@ import { categories } from "../utils/category";
  * @function Navbar
  **/
 
-const Navbar = (props) => {
+const Navbar = ({ setSearchTerm, searchTerm, setSearchItems }) => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const client = createClient({
+      space: "69mfylvjbr0r",
+      accessToken: "5lORfJX0w2Cm4vAvwQ5GoFBaW5zGhGi0pCoqIFDxTGI",
+    });
+
+    // Links are automatically resolved
+    client
+      .getEntries({
+        content_type: "product",
+        query: searchTerm,
+      })
+      .then((response) => setSearchItems(response.items))
+      .catch(console.error);
+  }, [searchTerm]);
 
   return (
     <>
@@ -48,6 +65,8 @@ const Navbar = (props) => {
                 type="text"
                 className="h-14 sm:h-12 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
                 placeholder="Search anything..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
               <div className="absolute top-2 right-2 py-4 mr-2">
                 {" "}
@@ -70,7 +89,7 @@ const Navbar = (props) => {
 
             {/* <!-- secondary nav --> */}
             <div className="hidden md:flex items-center space-x-1">
-              <Link href="" className="py-5 px-3">
+              <Link href="/about" className="py-5 px-3">
                 About
               </Link>
               <Link href="/contact" className="py-2 px-3">
@@ -106,6 +125,16 @@ const Navbar = (props) => {
         {/* <!-- mobile menu --> */}
 
         <div className={open ? "mobile-menu md:hidden" : "hidden"}>
+          <div className="flex justify-center">
+            <input
+              type="text"
+              className=" h-12 w-4/5  mx-auto pl-10 pr-20 rounded-lg  focus:shadow focus:outline-none"
+              placeholder="Search anything..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+
           {categories.map((item, i) => (
             <p key={i} className="block py-2 px-4 text-sm hover:bg-gray-200">
               <Link href={"/category/" + item.name.toLowerCase()}>
